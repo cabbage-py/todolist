@@ -1,14 +1,30 @@
-import React from 'react';
-import TodoItem from './TodoItem';
-import PropTypes from 'prop-types';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import TodoItem from "./TodoItem";
 
-class Todos extends React.Component {
+const Todos = ({ todos, toggleTodo, removeTodo, editTodo }) => {
+  return todos.map((todo) => (
+    <TodoItem
+      todo={todo}
+      toggleTodo={() => toggleTodo(todo.id)}
+      removeTodo={() => removeTodo(todo.id)}
+      editTodo={editTodo}
+    />
+  ));
+};
 
-  render() {
-    return this.props.todos.map((todo) => (
-    <TodoItem/>
-    ));
-  }
-}
+Todos.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+    }).isRequired
+  ),
+  toggleTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+};
 
-export default Todos;
+export default connect()(Todos);
