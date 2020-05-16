@@ -1,18 +1,15 @@
-import { connect } from 'react-redux';
-import Todos from '../components/Todos';
-import { toggleComplete, removeTodo, editTodo } from '../actions/actions'
+import { connect } from "react-redux";
+import Todos from "../components/Todos";
+import { toggleComplete, removeTodo, toggleEdit } from "../actions/actions";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   todos: state
-})
+});
 
-const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleComplete(id)),
-  removeTodo: id => dispatch(removeTodo(id)),
-  editTodo: editTodo
-})
+const mapDispatchToProps = (dispatch) => ({
+  toggleTodo: (id) => dispatch(toggleComplete(id)),
+  removeTodo: (id) => dispatch(removeTodo(id)),
+  toggleEdit: (id) => dispatch(toggleEdit(id)),
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Todos)
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);

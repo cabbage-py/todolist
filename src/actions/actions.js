@@ -1,5 +1,3 @@
-
-
 export const addTodo = (title) => ({
     type: "ADD_TODO",
     payload: {
@@ -24,6 +22,13 @@ export const editTodo = (id, title) => ({
 
 export const toggleComplete = (id) => ({
     type: "TOGGLE_COMPLETE",
+    payload: {
+        id
+    }
+})
+
+export const toggleEdit = (id) => ({
+    type: "TOGGLE_EDIT",
     payload: {
         id
     }
