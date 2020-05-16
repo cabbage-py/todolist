@@ -4,13 +4,13 @@ export default function todoReducer(state = [], action) {
     switch(action.type){
         case "ADD_TODO":
             return [
-                ...state,
                 {
                     id: todoId++,
                     title: action.payload.title,
                     completed: false,
                     showEdit: false
-                }
+                },
+                ...state
             ];
         
         case "REMOVE_TODO":
